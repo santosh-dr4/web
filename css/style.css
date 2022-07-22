@@ -458,7 +458,7 @@ h6 {
 
 .abouttext .text {
     background: #f2f3f4;
-    padding: 3vw 6vw 3vw 3.5vw;
+    padding: 2vw;
 }
 
 .abouttext .text h2 {
@@ -470,7 +470,7 @@ h6 {
 
 .abouttext .text p {
     font-size: .95vw;
-    margin: 0 0 2vw;
+    margin: 0 0 1vw;
     line-height: 1.8vw;
 }
 
@@ -934,7 +934,8 @@ h6 {
     }
 
     .impact-card .img img {
-        width: 70px;
+        width: 50px;
+        margin-right: 10px;
     }
 
     .impact-card {
@@ -942,7 +943,7 @@ h6 {
     }
 
     .waviy {
-        font-size: 18px;
+        font-size: 17px;
         margin: 10px 0;
     }
 
@@ -1321,12 +1322,64 @@ h6 {
         color: #fff;
         font-size: 28px !important;
     }
+    .navbar-nav{
+        padding-bottom: 30px;
+    }
 
-
+    .hero-header {
+        height: 92vh !important;
+    }
+    .about-service-slider .review_slider2 .text h4 {
+        font-size: 15px !important;
+        margin-bottom: 10px !important;
+    }
+    .about-service-slider .review_slider2 .text a {
+    font-size: 14px !important;
+    padding: 10px 30px !important;
+    border-radius: 3px !important;
+}
+.about-service-slider .review_slider2 .text a i {
+    font-size: 18px !important;
+    right: 5px !important;
+    top: 7px !important;
+}
+.about-service-slider .review_slider2 .slick-dots{
+    display: none !important;
+}
+.impact-card:hover{
+    transform: scale(1) !important;
+    align-items: center;
+}
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
-
+    .impact-card:hover{
+        transform: scale(1) !important;
+        align-items: center;
+    }
+    .about-service-slider .review_slider2 .slick-dots{
+        display: none !important;
+    }
+    .about-service-slider .review_slider2 .text a i {
+    font-size: 18px !important;
+    right: 5px !important;
+    top: 7px !important;
+}
+    .about-service-slider .review_slider2 .text a {
+        font-size: 14px !important;
+        padding: 10px 30px !important;
+        border-radius: 3px !important;
+    }
+    .hero-header {
+        height: 98vh !important;
+    }
+    .about-service-slider .review_slider2 .text h4 {
+        font-size: 15px !important;
+        margin-bottom: 10px !important;
+    }
+    .navbar-nav{
+        padding-bottom: 30px;
+    }
     .header .navbar-brand img {
         width: 50%;
     }
@@ -1795,6 +1848,7 @@ h6 {
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
+    
     .header .navbar-brand img {
         width: 90%;
     }
@@ -1814,7 +1868,7 @@ h6 {
     }
 
     .header .navbar-nav .nav-item {
-        margin: 0 auto;
+        margin: 0 10px;
         padding: 8px 0;
     }
 
@@ -1830,7 +1884,15 @@ h6 {
         font-size: 14px;
         text-align: center;
     }
-
+    .navbar-expand-md .navbar-nav{
+        align-items: center;
+    }
+    .hero-header {
+        height: 43vh;
+    }
+    .impact-card {
+        display: block;
+    }
     .contactno {
         display: flex;
     }
@@ -1861,7 +1923,7 @@ h6 {
     }
 
     .hero-header video {
-        height: 40vh !important;
+        height: 44vh !important;
     }
 
     .our-impact {
@@ -1876,11 +1938,14 @@ h6 {
 
     .impact-card .img img {
         width: 50px;
+    text-align: center;
+    margin: 0 auto;
     }
 
     .waviy {
         font-size: 14px;
         margin: 10px 0 0;
+        text-align: center;
     }
 
     .our-services {
@@ -1932,7 +1997,7 @@ h6 {
     }
 
     .abouttext .text {
-        padding: 20px;
+        padding: 10px;
     }
 
     .abouttext .text h2 {
@@ -2262,11 +2327,13 @@ h6 {
 
     .impact-card .img img {
         width: 50px;
+        margin: 0 auto;
     }
 
     .waviy {
         font-size: 14px;
         margin: 10px 0 0;
+        text-align: center;
     }
 
     .our-services {
@@ -2323,8 +2390,14 @@ h6 {
 
     .abouttext .text h2 {
         font-size: 22px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         letter-spacing: 1px;
+    }
+    .hero-header {
+        height: 39vh;
+    }
+    .impact-card {
+        display: block;
     }
 
     .abouttext .text p {
@@ -3695,7 +3768,7 @@ h6 {
     }
 
     .about-service-slider {
-        padding: 40px 0;
+        padding: 40px 0 0;
     }
 
     .about-service-slider .review_slider2 .text {
@@ -3720,7 +3793,10 @@ h6 {
     }
 
     .header .navbar-brand img {
-        width: 25% !important;
+        width: 114px !important;
+    }
+    .contactno{
+        display: none;
     }
 
     .header-inner {
