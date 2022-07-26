@@ -6,7 +6,7 @@
 		$headerloc = $_SERVER['HTTP_REFERER'];
 	}else{
 		// header('Location: ../index.php');
-		$headerloc = 'index.html';
+		$headerloc = '../index.html';
 	}
 
 	$varMain = false;

@@ -2923,12 +2923,15 @@ h6 {
 
 .preconstraction_content .main_content .para_content {
     font-size: 0.9vw;
+    color: #000;
+
 }
 
 .preconstraction_content .main_content .list_formt .list_color {
     list-style: none;
     font-size: 0.9vw;
     padding: 0.2vw 0;
+    color: #000;
 }
 
 .preconstraction_content .main_content .list_formt {
@@ -2951,6 +2954,8 @@ h6 {
 
 .preconstraction_content .main_content .layout_mapping p {
     font-size: 0.9vw;
+    color: #000;
+    margin-bottom: 1vw;
 }
 
 .preconstraction_content .main_content .planning h6 {
@@ -2964,6 +2969,7 @@ h6 {
 
 .preconstraction_content .main_content .planning p {
     font-size: 0.9vw;
+    color: #000;
 }
 
 .preconstraction_content .main_content .Structural_design h6 {
@@ -2977,6 +2983,7 @@ h6 {
 
 .preconstraction_content .main_content .Structural_design p {
     font-size: 0.9vw;
+    color: #000;
 }
 
 .preconstraction_content .main_content .Permissions h6 {
@@ -3007,6 +3014,7 @@ h6 {
 
 .preconstraction_content .main_content .rera_Services p {
     font-size: 0.9vw;
+    color: #000;
 }
 
 .preconstraction_content .main_content .equipment h6 {
@@ -3020,10 +3028,12 @@ h6 {
 
 .preconstraction_content .main_content .equipment p {
     font-size: 0.9vw;
+    color: #000;
 }
 
 .buliding_content p {
     font-size: 0.9vw !important;
+    color: #000;
 }
 
 .preconstraction_content .border_none {
