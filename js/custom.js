@@ -104,15 +104,34 @@ sessionStorage.removeItem("mailresponse");
 		$("#sendRequestForm").submit(function(event){
 			event.preventDefault();
 			Loader.open();
-			$.post("php/sendmail.php", $("#sendRequestForm").serialize() ,function(data,status){
+			$.post("http://13.232.10.173/dr4_mail/sendmail.php", $("#sendRequestForm").serialize() ,function(data,status){
 				if(status == "success" && data.hasOwnProperty("success") && data.success == true){
 					swal("success","Request Sent To Admin");
 				}else{
 					swal("error","Something Went Wrong");
 				}
 				grecaptcha.reset();
-				Loader.close()
+				Loader.close();
 			});
+
+			// $.ajax({
+			// 	url : "http://13.232.10.173/dr4-mail/sendmail.php",
+			// 	dataType: "json",
+			// 	crossDomain : true,
+			// 	method : "POST",
+			// 	data : $("#sendRequestForm").serialize()
+			// 	success : function(data,status){
+			// 		console.log(data,status);
+			// 	},
+			// 	error : function(error){
+			// 		debugger;
+			// 		console.log(error.getAllResponseHeaders());
+			// 	}
+			// }).done(function(){
+			// 	grecaptcha.reset();
+			// 	Loader.close();
+			// })
+
 		});
 	}
 
