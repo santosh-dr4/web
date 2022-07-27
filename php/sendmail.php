@@ -36,7 +36,6 @@
 	}
 
 
-
 	if (!empty($_POST) && $varMain){
 
 		$mail = new PHPMailer;
@@ -45,12 +44,12 @@
 		$mail->Encoding = "base64";
 		$mail->SMTPAuth = true;
 
-		$mail->Host = 'smtp.zeptomail.com';
+		$mail->Host = 'ssl://smtp.gmail.com';
 		$mail->Port = 465;
-		$mail->Username = 'emailapikey';
-		$mail->Password = 'wSsVR611+0X4Dql5njKsIexszw9TBlLxEkQr31Cp73aqGfuXocc5n02cU1TxGvgbETJqETMR8b0pmRgH1DUPj497y1kICiiF9mqRe1U4J3x17qnvhDzKW2talhCBKYwIzgtpnGhhEcsq+g==';
+		$mail->Username = 'sravahkumar@gmail.com';
+		$mail->Password = 'vpwpkncrrhstgjvr';
 		$mail->SMTPSecure = 'ssl';		
-		$mail->setFrom('noreply@mbrdigital.net', "DR4 Request");
+		$mail->setFrom('sravahkumar@gmail.com', "DR4 Request");
 		$mail->addAddress('info@digitalroof.com');
 
 		unset($_POST['submit']);
@@ -110,26 +109,6 @@
 		$json['success'] = false;
 	}
 
-	// header('Content-type: application/json');
-	// print_r(json_encode($json));
-?>
-
-<?php if(isset($json) && isset($json['success'])){ ?>
-	<script type="text/javascript">
-		console.log("hsdhdhjs");
-		sessionStorage.setItem("mailresponse" , true);
-		window.location = "<?php echo $headerloc ?>";
-	</script>
-<?php	}else{ ?>
-	<script type="text/javascript">
-		console.log("hsdhdhjs22");
-		sessionStorage.setItem("mailresponse" , false);
-		window.location = "<?php echo $headerloc ?>";
-	</script>
-<?php }
-	
-
-
-	// header('Location: '.$headerloc);
-
+	header('Content-type: application/json');
+	print_r(json_encode($json));
 ?>

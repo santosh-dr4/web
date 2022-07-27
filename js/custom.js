@@ -1,3 +1,5 @@
+
+
 AOS.init({
 	once: true
 })
@@ -83,13 +85,15 @@ $(document).ready(function(){
  
 });
 
-function onSubmit(token) {
-	// console.log(token);
-	if($("#sendRequestForm").length && $("#sendRequestForm").get(0).reportValidity()){
-		$("#sendRequestForm").submit();
-	}
-}
 
+
+	function onSubmit(token) {
+		if($("#sendRequestForm").length && $("#sendRequestForm").get(0).reportValidity()){
+			$("#sendRequestForm").trigger("submit");
+		}
+	}
+
+// $(document).ready(function(){})
 if(sessionStorage.getItem("mailresponse") == 'true'){
 	swal("success","Request Sent To Admin");
 }else if(sessionStorage.getItem("mailresponse") == 'false'){
@@ -98,12 +102,20 @@ if(sessionStorage.getItem("mailresponse") == 'true'){
 
 sessionStorage.removeItem("mailresponse");
 
-// $("#sendRequestForm").submit(function(e){
-// 	e.prevenDefault();
-// 	$.post("../php/sendmail.php", new FormData(document.getElementById("sendRequestForm")),function(data,status){
-// 		console.log(data,status);
-// 	});
-// });
+	if($("#sendRequestForm").length){
+		$("#sendRequestForm").submit(function(event){
+			event.preventDefault();
+			$.post("php/sendmail.php", $("#sendRequestForm").serialize() ,function(data,status){
+				console.log(data,status);
+				if(status == "success" && data.hasOwnProperty("success") && data.success == true){
+					swal("success","Request Sent To Admin");
+				}else{
+					swal("error","Something Went Wrong");
+				}
+				grecaptcha.reset();
+			});
+		});
+	}
 
 // if($(".btn_type.g-recaptcha").length){
 // 	$(".btn_type.g-recaptcha").click(function(){
@@ -112,7 +124,3 @@ sessionStorage.removeItem("mailresponse");
 // 		});
 // 	})
 // }
-
-
-
-
