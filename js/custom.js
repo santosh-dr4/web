@@ -1,5 +1,3 @@
-
-
 AOS.init({
 	once: true
 })
@@ -105,14 +103,15 @@ sessionStorage.removeItem("mailresponse");
 	if($("#sendRequestForm").length){
 		$("#sendRequestForm").submit(function(event){
 			event.preventDefault();
+			Loader.open();
 			$.post("php/sendmail.php", $("#sendRequestForm").serialize() ,function(data,status){
-				console.log(data,status);
 				if(status == "success" && data.hasOwnProperty("success") && data.success == true){
 					swal("success","Request Sent To Admin");
 				}else{
 					swal("error","Something Went Wrong");
 				}
 				grecaptcha.reset();
+				Loader.close()
 			});
 		});
 	}
