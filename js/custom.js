@@ -83,8 +83,6 @@ $(document).ready(function(){
  
 });
 
-
-
 	function onSubmit(token) {
 		if($("#sendRequestForm").length && $("#sendRequestForm").get(0).reportValidity()){
 			$("#sendRequestForm").trigger("submit");
@@ -92,6 +90,7 @@ $(document).ready(function(){
 	}
 
 // $(document).ready(function(){})
+
 if(sessionStorage.getItem("mailresponse") == 'true'){
 	swal("success","Request Sent To Admin");
 }else if(sessionStorage.getItem("mailresponse") == 'false'){

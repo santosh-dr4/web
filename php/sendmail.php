@@ -38,7 +38,6 @@
 		}
 	}
 
-
 	if (!empty($_POST) && $varMain){
 
 		$mail = new PHPMailer;
@@ -47,12 +46,14 @@
 		$mail->Encoding = "base64";
 		$mail->SMTPAuth = true;
 
+
 		$mail->Host = 'ssl://smtp.gmail.com';
 		$mail->Port = 465;
 		$mail->Username = 'sravahkumar@gmail.com';
 		$mail->Password = 'vpwpkncrrhstgjvr';
 		$mail->SMTPSecure = 'ssl';		
 		$mail->setFrom('sravahkumar@gmail.com', "DR4 Request");
+
 		$mail->addAddress('info@digitalroof.com');
 
 		unset($_POST['submit']);
@@ -114,4 +115,5 @@
 
 	header('Content-type: application/json');
 	print_r(json_encode($json));
+	
 ?>
