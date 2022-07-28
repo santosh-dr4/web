@@ -301,26 +301,26 @@
 							<div class="form_heading">
 								<h5>Get Expert Assistance</h5>
 							</div>
-						   <form action="php/sendmail.php" method="POST" id="sendRequestForm" enctype="multipart/form-data">
+						   <form   >
 						   	<input type="hidden" name="heading" value="Construction Assistance Request">
 								<div class="form-floating margin_bottom">
-									<input type="text" class="form-control form_padding" name="Name" 
+									<input type="text" class="form-control form_padding" name="Name" id="name"
 										placeholder="Name" pattern="[a-zA-Z]{4,15}" title="Minimum 4 letters" required>
 									<label class="input_format">Name <span>*</span></label>
 								</div>
 								<div class="form-floating margin_bottom">
-									<input type="tel" class="form-control form_padding" placeholder="Phone Number" title="Enter 10 digit mobile number" pattern="[1-9]{1}[0-9]{9}" name="Mobile_number" required>
-									<label class="input_format">Phone number<span>*</span></label>
+                                    <label class="input_format">Phone number<span>*</span></label>
+									<input type="tel" class="form-control form_padding" placeholder="Phone Number" title="Enter 10 digit mobile number" pattern="[1-9]{1}[0-9]{9}" name="Mobile_number" id="Mobile_number" required>
 								</div>
 								<div class="form-floating margin_bottom">
-									<input type="text" class="form-control form_padding" placeholder="Location" name="Location" required>
+									<input type="text" class="form-control form_padding" placeholder="Location" name="Location" id="Location" required>
 									<label class="input_format">Location<span>*</span></label>
 								</div>
 								<!-- <button class="g-recaptcha" data-sitekey="6LexmfsgAAAAAMuDJ-3qfvXnCRdl_q9o4HncK8mH" data-callback='onSubmit' data-action='submit'>Submit</button> -->
 
 								<div class="form-floating margin_bottom">
 									<div class="btn_requst">
-										<button type="submit" data-sitekey="6LexmfsgAAAAAMuDJ-3qfvXnCRdl_q9o4HncK8mH" data-callback='onSubmit' data-action='submit' class="btn_type g-recaptcha" >REQUEST A CALLBACK</button>
+										<button onclick="sendEmail()"  data-sitekey="6LexmfsgAAAAAMuDJ-3qfvXnCRdl_q9o4HncK8mH" class="btn_type g-recaptcha" >REQUEST A CALLBACK </button>
 									</div>
 								</div>
 							</form>
@@ -961,6 +961,54 @@
 	<script src="js/custom.js"></script>
 
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src=
+    "https://smtpjs.com/v3/smtp.js">
+  </script>
+ 
+  <script >
+    
+    function sendEmail() {
+        var nameValue = document.getElementById("Mobile_number").value;
+//         Email.send({
+//     Host : "smtp.elasticemail.com",
+//     smtp_sasl_auth_enable : yes,
+    
+//     Username : "sravani@digitalroof4.com",
+//     Password : "4041F49058A22B1EBDB64494A1EFC0FB3156",
+//     To : 'imran@digitalroof4.com',
+//     From : "imraanimmu14@gmail.com",
+//     Subject : "This is the subject",
+//     Body : "And this is the body"
+// }).then(
+//   message => alert(message)
+// );
+let body = {
+            to: 'imran@digitalroof4.com',
+            replyTo: "",
+            cc: "",
+            from: 'nagaraju@digitalroof4.com',
+            subject: 'Test Email',
+            message: "Testing",
+            html: `<p>Hello ,</p>
+            <p> New PO is Generated.</p>
+           
+          <p> Regards,<br/>
+           DR4-admin</p>
+           `
+        }
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        };
+    
+fetch('https://dev-dr4-api.azurewebsites.net/mail/sendMail')
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+
+        console.log(nameValue)
+    }
+  </script>
 
 </body>
 
