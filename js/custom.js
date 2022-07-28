@@ -103,34 +103,52 @@ sessionStorage.removeItem("mailresponse");
 		$("#sendRequestForm").submit(function(event){
 			event.preventDefault();
 			Loader.open();
-			$.post("http://13.232.10.173/dr4_mail/sendmail.php", $("#sendRequestForm").serialize() ,function(data,status){
+			$.post("https://mbrinformatics.com/DEV/Dr4/sendmail.php", $("#sendRequestForm").serialize() ,function(data,status){
 				if(status == "success" && data.hasOwnProperty("success") && data.success == true){
 					swal("success","Request Sent To Admin");
 				}else{
 					swal("error","Something Went Wrong");
 				}
-				grecaptcha.reset();
 				Loader.close();
 			});
 
 			// $.ajax({
-			// 	url : "http://13.232.10.173/dr4-mail/sendmail.php",
+			// 	url : "http://dr4.mbrinfo.com/mailphp_dr4/sendmail.php",
+			// 	async: false,
+			// 	beforeSend: function(xhr,setting){
+			// 		console.log("beforesend",xhr,setting);
+			// 		xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
+			// 		xhr.setRequestHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+			// 		xhr.setRequestHeader("Access-Control-Allow-Origin","http://shrvnkummr.com/");
+			// 		// xhr.overrideMimeType("text/plain; charset=x-user-defined" );
+			// 	},
+			// 	cache : false,
+			// 	complete : function(xhr,statustext){
+			// 		console.log("complete",xhr,statustext);
+			// 	},
+			// 	// contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			// 	dataType: "json",
-			// 	crossDomain : true,
-			// 	method : "POST",
-			// 	data : $("#sendRequestForm").serialize()
+			// 	error : function(error){
+			// 		debugger;
+			// 		console.log("error",error);
+			// 	},
+
+			// 	contents: {
+			// 		mycustomtype: "mycustomtype",
+			// 	},
+			// 	method : "GET",
+			// 	// xhrFields: {
+			// 	// 	withCredentials: true
+			// 	// },
+			// 	// crossDomain : true,
+			// 	// data : $("#sendRequestForm").serialize(),
 			// 	success : function(data,status){
 			// 		console.log(data,status);
 			// 	},
-			// 	error : function(error){
-			// 		debugger;
-			// 		console.log(error.getAllResponseHeaders());
-			// 	}
-			// }).done(function(){
+			// }).done(function(data){
 			// 	grecaptcha.reset();
 			// 	Loader.close();
-			// })
-
+			// });
 		});
 	}
 
