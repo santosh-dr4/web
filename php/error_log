@@ -1,2 +1,0 @@
-[11-Aug-2021 07:36:48 America/Boise] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/pcfixexp/public_html/DEV/brbbuilder-cms/php/PHPMailer/class.smtp.php:244) in /home3/pcfixexp/public_html/DEV/brbbuilder-cms/php/sendmail.php on line 47
-[11-Aug-2021 07:37:59 America/Boise] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/pcfixexp/public_html/DEV/brbbuilder-cms/php/PHPMailer/class.smtp.php:244) in /home3/pcfixexp/public_html/DEV/brbbuilder-cms/php/sendmail.php on line 47
