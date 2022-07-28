@@ -103,7 +103,8 @@ sessionStorage.removeItem("mailresponse");
 		$("#sendRequestForm").submit(function(event){
 			event.preventDefault();
 			Loader.open();
-			$.post("https://mbrinformatics.com/DEV/Dr4/sendmail.php", $("#sendRequestForm").serialize() ,function(data,status){
+			$.post("https://lweonline.co.uk/dr4-mail/sendmail.php", $("#sendRequestForm").serialize() ,function(data,status){
+
 				if(status == "success" && data.hasOwnProperty("success") && data.success == true){
 					swal("success","Request Sent To Admin");
 				}else{
@@ -117,9 +118,9 @@ sessionStorage.removeItem("mailresponse");
 			// 	async: false,
 			// 	beforeSend: function(xhr,setting){
 			// 		console.log("beforesend",xhr,setting);
-			// 		xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
-			// 		xhr.setRequestHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-			// 		xhr.setRequestHeader("Access-Control-Allow-Origin","http://shrvnkummr.com/");
+			// 		// xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
+			// 		// xhr.setRequestHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+			// 		xhr.setRequestHeader("Access-Control-Allow-Origin","*");
 			// 		// xhr.overrideMimeType("text/plain; charset=x-user-defined" );
 			// 	},
 			// 	cache : false,
@@ -149,6 +150,24 @@ sessionStorage.removeItem("mailresponse");
 			// 	grecaptcha.reset();
 			// 	Loader.close();
 			// });
+
+
+			// const settings = {
+			// 	  "async": true,
+			// 	  "crossDomain": true,
+			// 	  "url": "http://bizinu.sskemart.com/mailTest/sendmail.php",
+			// 	  "method": "POST",
+			// 	  "data" : $("#sendRequestForm").serialize(),
+			// 	  "headers": {
+			// 	  	// "Access-Control-Allow-Headers" : "Origin, Content-Type, Accept",
+			// 	  	// "Access-Control-Allow-Origin" : "*"
+			// 	  }
+			// 	};
+
+			// 	$.ajax(settings).done(function (response) {
+			// 	  console.log(response);
+			// 	});
+
 		});
 	}
 
