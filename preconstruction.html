@@ -286,29 +286,29 @@
 							<div class="form_heading">
 								<h5>Get Expert Assistance</h5>
 							</div>
-							<form action="php/sendmail.php" method="POST" id="sendRequestForm" enctype="multipart/form-data">
-								<input type="hidden" name="heading" value="Pre-Construction Assistance Request">
+						   
+						   	<input type="hidden" name="heading" value="Construction Assistance Request">
 								<div class="form-floating margin_bottom">
-									<input type="text" class="form-control form_padding" name="Name" 
+									<input type="text" class="form-control form_padding" name="Name" id="name"
 										placeholder="Name" pattern="[a-zA-Z]{4,15}" title="Minimum 4 letters" required>
 									<label class="input_format">Name <span>*</span></label>
 								</div>
 								<div class="form-floating margin_bottom">
-									<input type="tel" class="form-control form_padding" placeholder="Phone Number" title="Enter 10 digit mobile number" pattern="[1-9]{1}[0-9]{9}" name="Mobile_number" required>
+                                    <input type="tel" class="form-control form_padding" placeholder="Phone Number" title="Enter 10 digit mobile number" pattern="[1-9]{1}[0-9]{9}" name="Mobile_number" id = 'Mobile_number' required>
 									<label class="input_format">Phone number<span>*</span></label>
 								</div>
 								<div class="form-floating margin_bottom">
-									<input type="text" class="form-control form_padding" placeholder="Location" name="Location" required>
+									<input type="text" class="form-control form_padding" placeholder="Location" name="Location" id="Location" required>
 									<label class="input_format">Location<span>*</span></label>
 								</div>
 								<!-- <button class="g-recaptcha" data-sitekey="6LexmfsgAAAAAMuDJ-3qfvXnCRdl_q9o4HncK8mH" data-callback='onSubmit' data-action='submit'>Submit</button> -->
 
 								<div class="form-floating margin_bottom">
 									<div class="btn_requst">
-										<button type="submit" data-sitekey="6LexmfsgAAAAAMuDJ-3qfvXnCRdl_q9o4HncK8mH" data-callback='onSubmit' data-action='submit' class="btn_type g-recaptcha" >REQUEST A CALLBACK</button>
+										<button onclick="sendEmail()"   class="btn_type g-recaptcha" >REQUEST A CALLBACK </button>
 									</div>
 								</div>
-							</form>
+							
 						</div>
 					</div>
 				</div>
@@ -821,7 +821,42 @@
 <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
 
 <script src="js/custom.js"></script>
+<script src=
+"https://smtpjs.com/v3/smtp.js">
+</script>
 
+<script >
+
+function sendEmail() {
+	var name = document.getElementById("name").value;
+	var mobile_number = document.getElementById("Mobile_number").value;
+	var location = document.getElementById("Location").value;
+	console.log(name,mobile_number,location)
+
+let body = {
+		to: 'imran@digitalroof4.com',
+		replyTo: "",
+		cc: "",
+		from: 'nagaraju@digitalroof4.com',
+		subject: 'Enquiry',
+		message: "Enquiry",
+		html: `<p>Hello ,</p>
+		<p> ${name}</p><br/>
+		<p> ${mobile_number}</p><br/>
+		<p> ${location}</p><br/>`
+	}
+	const requestOptions = {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(body)
+	};
+
+fetch('https://dev-dr4-api.azurewebsites.net/mail/sendMail')
+.then((response) => response.json())
+.then((data) => console.log(data));
+
+}
+</script>
 </body>
 
 </html>
