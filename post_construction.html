@@ -843,7 +843,7 @@ let body = {
             body: JSON.stringify(body)
         };
     
-fetch('https://dev-dr4-api.azurewebsites.net/mail/sendMail')
+fetch('https://dev-dr4-api.azurewebsites.net/mail/sendMail',requestOptions)
   .then((response) => response.json())
   .then((data) => console.log(data));
 
