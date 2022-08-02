@@ -2,10 +2,10 @@ AOS.init({
 	once: true
 })
 
-$(document).ready(function(){
+$(document).ready(function () {
 
 	$(".review_slider").slick({
-		slidesToShow:1,
+		slidesToShow: 1,
 		loop: true,
 		dots: false,
 		autoplay: true,
@@ -44,7 +44,7 @@ $(document).ready(function(){
 
 
 	$(".review_slider2").slick({
-		slidesToShow:1,
+		slidesToShow: 1,
 		loop: true,
 		dots: true,
 		autoplay: true,
@@ -80,59 +80,59 @@ $(document).ready(function(){
 		//     }
 		//   ]
 	});
- 
+
 });
 
-	function onSubmit(token) {
-		if($("#sendRequestForm").length && $("#sendRequestForm").get(0).reportValidity()){
-			$("#sendRequestForm").trigger("submit");
-		}
+function onSubmit(token) {
+	if ($("#sendRequestForm").length && $("#sendRequestForm").get(0).reportValidity()) {
+		$("#sendRequestForm").trigger("submit");
 	}
+}
 
 // $(document).ready(function(){})
 
-if(sessionStorage.getItem("mailresponse") == 'true'){
-	swal("success","Request Sent To Admin");
-}else if(sessionStorage.getItem("mailresponse") == 'false'){
-	swal("error","Something Went Wrong");
+if (sessionStorage.getItem("mailresponse") == 'true') {
+	swal("success", "Request Sent To Admin");
+} else if (sessionStorage.getItem("mailresponse") == 'false') {
+	swal("error", "Something Went Wrong");
 }
 
 sessionStorage.removeItem("mailresponse");
 
-	if($("#sendRequestForm").length){
-		$("#sendRequestForm").submit(function(event){
-			event.preventDefault();
-			Loader.open();
-			$.post("http://13.232.10.173/dr4_mail/sendmail.php", $("#sendRequestForm").serialize() ,function(data,status){
-				if(status == "success" && data.hasOwnProperty("success") && data.success == true){
-					swal("success","Request Sent To Admin");
-				}else{
-					swal("error","Something Went Wrong");
-				}
-				grecaptcha.reset();
-				Loader.close();
-			});
-
-			// $.ajax({
-			// 	url : "http://13.232.10.173/dr4-mail/sendmail.php",
-			// 	dataType: "json",
-			// 	crossDomain : true,
-			// 	method : "POST",
-			// 	data : $("#sendRequestForm").serialize()
-			// 	success : function(data,status){
-			// 		console.log(data,status);
-			// 	},
-			// 	error : function(error){
-			// 		debugger;
-			// 		console.log(error.getAllResponseHeaders());
-			// 	}
-			// }).done(function(){
-			// 	grecaptcha.reset();
-			// 	Loader.close();
-			// })
-
+if ($("#sendRequestForm").length) {
+	$("#sendRequestForm").submit(function (event) {
+		event.preventDefault();
+		Loader.open();
+		$.post("http://dr44-backend.azurewebsites.net/dr4_mail/sendmail.php", $("#sendRequestForm").serialize(), function (data, status) {
+			if (status == "success" && data.hasOwnProperty("success") && data.success == true) {
+				swal("success", "Request Sent To Admin");
+			} else {
+				swal("error", "Something Went Wrong");
+			}
+			grecaptcha.reset();
+			Loader.close();
 		});
-	}
+
+		// $.ajax({
+		// 	url : "http://13.232.10.173/dr4-mail/sendmail.php",
+		// 	dataType: "json",
+		// 	crossDomain : true,
+		// 	method : "POST",
+		// 	data : $("#sendRequestForm").serialize()
+		// 	success : function(data,status){
+		// 		console.log(data,status);
+		// 	},
+		// 	error : function(error){
+		// 		debugger;
+		// 		console.log(error.getAllResponseHeaders());
+		// 	}
+		// }).done(function(){
+		// 	grecaptcha.reset();
+		// 	Loader.close();
+		// })
+
+	});
+}
 
 // if($(".btn_type.g-recaptcha").length){
 // 	$(".btn_type.g-recaptcha").click(function(){
