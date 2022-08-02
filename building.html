@@ -751,8 +751,7 @@
 						</div>
 						<div class="text middle">
 							<h6>For business inquiries</h6>
-
-							<a href="#">info@digitalroof4.com</a>
+							<a href="mailto:info@dr4.co.in">info@dr4.co.in</a>
 						</div>
 					</div>
 				</div>
@@ -765,7 +764,6 @@
 						</div>
 						<div class="text middle">
 							<h6>Call Us on</h6>
-
 							<a href="#">+919059098627</a>
 						</div>
 					</div>
@@ -826,39 +824,67 @@
     "https://smtpjs.com/v3/smtp.js">
   </script>
  
-  <script >
-    
-    function sendEmail() {
-        var name = document.getElementById("name").value;
-        var mobile_number = document.getElementById("Mobile_number").value;
-        var location = document.getElementById("Location").value;
-        console.log(name,mobile_number,location)
+<script >
+  	function sendEmail() {
+			if(!document.getElementById("name").reportValidity()){
+				return false;
+			}
 
-let body = {
-            to: 'info@digitalroof4.com',
-            replyTo: "",
-            cc: "",
-            from: 'nagaraju@digitalroof4.com',
-            subject: 'Call Back Enquiry',
-            message: "Call Back Enquiry",
-            html: `<p>Hello ,</p>
-			<p>A callback request is raised by</p>
-            <p> ${name}</p>
-            <p> ${mobile_number}</p>
-            <p> ${location}</p>`
-        }
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-        };
-    
-fetch('https://dev-dr4-api.azurewebsites.net/mail/sendMail',requestOptions)
-  .then((response) => response.json())
-  .then((data) => console.log(data));
+			if(!document.getElementById("Mobile_number").reportValidity()){
+				return false;
+			}
 
-    }
-  </script>
+			if(!document.getElementById("Location").reportValidity()){
+				return false;
+			}
+
+			var name = document.getElementById("name").value;
+			var mobile_number = document.getElementById("Mobile_number").value;
+			var location = document.getElementById("Location").value;
+
+			Loader.open();
+
+			let body = {
+				to: 'info@dr4.co.in',
+				replyTo: "",
+				cc: "",
+				from: 'nagaraju@digitalroof4.com',
+				subject: 'Call Back Enquiry',
+				message: "Call Back Enquiry",
+				html: `<p>Hello ,</p>
+							 <p>A callback request is raised by</p>
+			         <p> ${name}</p>
+			         <p> ${mobile_number}</p>
+			         <p> ${location}</p>`
+			}
+
+			const requestOptions = {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(body)
+			};
+
+			fetch('https://dev-dr4-api.azurewebsites.net/mail/sendMail',requestOptions)
+			.then((response) => response.json())
+			.then((data) => {
+				Loader.close();
+				console.log(data);
+				if(data.status == "OK"){
+					swal("Success", "Submitted successfully. Our team will contact you", "success");
+				}else{
+					swal("warning", "Something went wrong", "warning");
+				}
+				$(".form_content input").val("");
+			})
+			.catch(err => {
+				Loader.close();
+				swal("warning", err.message, "warning");
+				$(".form_content input").val("");
+				console.error(err);
+			});
+		}
+</script>
+
 </body>
 
 </html>

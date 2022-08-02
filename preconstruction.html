@@ -294,21 +294,18 @@
 									<label class="input_format">Name <span>*</span></label>
 								</div>
 								<div class="form-floating margin_bottom">
-                                    <input type="tel" class="form-control form_padding" placeholder="Phone Number" title="Enter 10 digit mobile number" pattern="[1-9]{1}[0-9]{9}" name="Mobile_number" id = 'Mobile_number' required>
+									<input type="tel" class="form-control form_padding" placeholder="Phone Number" title="Enter 10 digit mobile number" pattern="[1-9]{1}[0-9]{9}" name="Mobile_number" id = 'Mobile_number' required>
 									<label class="input_format">Phone number<span>*</span></label>
 								</div>
 								<div class="form-floating margin_bottom">
 									<input type="text" class="form-control form_padding" placeholder="Location" name="Location" id="Location" required>
 									<label class="input_format">Location<span>*</span></label>
 								</div>
-								<!-- <button class="g-recaptcha" data-sitekey="6LexmfsgAAAAAMuDJ-3qfvXnCRdl_q9o4HncK8mH" data-callback='onSubmit' data-action='submit'>Submit</button> -->
-
 								<div class="form-floating margin_bottom">
 									<div class="btn_requst">
 										<button onclick="sendEmail()"   class="btn_type g-recaptcha" >REQUEST A CALLBACK </button>
 									</div>
-								</div>
-							
+								</div>							
 						</div>
 					</div>
 				</div>
@@ -745,8 +742,7 @@
 						</div>
 						<div class="text middle">
 							<h6>For business inquiries</h6>
-
-							<a href="#">info@digitalroof4.com</a>
+							<a href="mailto:info@dr4.co.in">info@dr4.co.in</a>
 						</div>
 					</div>
 				</div>
@@ -828,34 +824,63 @@
 <script >
 
 function sendEmail() {
+
+	if(!document.getElementById("name").reportValidity()){
+		return false;
+	}
+
+	if(!document.getElementById("Mobile_number").reportValidity()){
+		return false;
+	}
+
+	if(!document.getElementById("Location").reportValidity()){
+		return false;
+	}
+
 	var name = document.getElementById("name").value;
 	var mobile_number = document.getElementById("Mobile_number").value;
 	var location = document.getElementById("Location").value;
-	console.log(name,mobile_number,location)
 
-let body = {
-		to: 'info@digitalroof4.com',
+	Loader.open();
+
+	let body = {
+		to: 'info@dr4.co.in',
 		replyTo: "",
 		cc: "",
 		from: 'nagaraju@digitalroof4.com',
 		subject: 'Call Back Enquiry',
-            message: "Call Back Enquiry",
-            html: `<p>Hello ,</p>
-			<p>A callback request is raised by</p>
-            <p> ${name}</p>
-            <p> ${mobile_number}</p>
-            <p> ${location}</p>`
+		message: "Call Back Enquiry",
+		html: `<p>Hello ,</p>
+					 <p>A callback request is raised by</p>
+	         <p> ${name}</p>
+	         <p> ${mobile_number}</p>
+	         <p> ${location}</p>`
 	}
+
 	const requestOptions = {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(body)
 	};
 
-fetch('https://dev-dr4-api.azurewebsites.net/mail/sendMail',requestOptions)
-.then((response) => response.json())
-.then((data) => console.log(data));
-
+	fetch('https://dev-dr4-api.azurewebsites.net/mail/sendMail',requestOptions)
+	.then((response) => response.json())
+	.then((data) => {
+		Loader.close();
+		console.log(data);
+		if(data.status == "OK"){
+			swal("Success", "Submitted successfully. Our team will contact you", "success");
+		}else{
+			swal("warning", "Something went wrong", "warning");
+		}
+		$(".form_content input").val("");
+	})
+	.catch(err => {
+		Loader.close();
+		swal("warning", err.message, "warning");
+		$(".form_content input").val("");
+		console.error(err);
+	});
 }
 </script>
 </body>
