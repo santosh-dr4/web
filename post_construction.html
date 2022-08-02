@@ -826,16 +826,17 @@
         console.log(name,mobile_number,location)
 
 let body = {
-            to: 'info@dr4.co.in',
+            to: 'info@digitalroof4.com',
             replyTo: "",
             cc: "",
             from: 'nagaraju@digitalroof4.com',
-            subject: 'Enquiry',
-            message: "Enquiry",
+			subject: 'Call Back Enquiry',
+            message: "Call Back Enquiry",
             html: `<p>Hello ,</p>
-            <p> ${name}</p><br/>
-            <p> ${mobile_number}</p><br/>
-            <p> ${location}</p><br/>`
+			<p>A callback request is raised by</p>
+            <p> ${name}</p>
+            <p> ${mobile_number}</p>
+            <p> ${location}</p>`
         }
         const requestOptions = {
             method: 'POST',
